@@ -1,22 +1,6 @@
 $(document).foundation();
-var Octokat = require('octokat');
 
-var data = require("./lib/data");
-var ReposBoardView = require("./lib/repos-board-view");
-
-var git = $('#git');
-var user = "noratop";
-
-
-$.fn.offScreen = function(){
-    var viewport = {};
-    viewport.top = $(window).scrollTop();
-    viewport.bottom = viewport.top + $(window).height();
-    var bounds = {};
-    bounds.top = this.offset().top;
-    bounds.bottom = bounds.top + this.outerHeight();
-    return ((bounds.top <= viewport.top) || (bounds.bottom >= viewport.bottom));
-}
+var searchGit = require("./lib/octo");
 
 
 $('.keyword__item').on("click",function(){
@@ -26,49 +10,34 @@ $('.keyword__item').on("click",function(){
     //console.log(keyword);
     
     //stick the hover style on the selected keyword
+    $('div.search input').removeClass("selected");
     $this.siblings().removeClass("selected");
     $this.addClass("selected");
     
-    //Setup the gitHub API instance
-    var octo = new Octokat({
-        username:"noratop",
-        password:"raspig84"
-    });
+    $('div.search input').val('');
+    searchGit(keyword);
+});
+
+$('div.search input').on("keyup",function(e){
     
-    var repos = octo.search('repositories');
+    var $this = $(this);
+    var keyword = $this.val();
+    // console.log(keyword);
     
-    //var search contains the search definition for the API request
-    var qualifiers = keyword +" user:"+user+" fork:true in:name,description,readme";
-    var search = {
-        q: qualifiers,
-        sort : "updated",
-        order: "asc",
-    };
-    
-    //search a callback (if not given -> Promises) and a config that is passed through toQueryString
-    repos.fetch(search)
-    .then(function(result) {
-        
-        var reposCollection = new data.RepoCollection(result.items,{
-            octo: octo,
-            keyword: keyword,
-            user: user
-        });
-        
-        var repos = new ReposBoardView({
-            collection: reposCollection
-        });
-        
-        if(!$.trim(git.html())) {git.append(repos.render().$el);}
-        else {
-            var initialScroll = $(window).scrollTop();
-            var board = git.find(".git-board");
-            board.replaceWith(repos.render().$el);
+    if (keyword){
+
+        if (e.keyCode === 13) {
+            //remove any previous keyword selection style
+            $(".keyword").children().removeClass("selected");
             
+            $this.addClass("selected");
+
+            searchGit(keyword);
         }
-        
-        if (git.offScreen()){
-            $('body').animate({scrollTop: $(".keyword").offset().top - 5},'1000');
-        }
-    });
+    }
+    else {
+        // console.log("empty");
+        $this.removeClass("selected");
+    }
+
 });
