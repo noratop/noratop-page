@@ -38,11 +38,11 @@ $('.keyword__item').on("click",function(){
     var repos = octo.search('repositories');
     
     //var search contains the search definition for the API request
-    var qualifiers = keyword +" user:"+user+" fork:true";
+    var qualifiers = keyword +" user:"+user+" fork:true in:name,description,readme";
     var search = {
         q: qualifiers,
         sort : "updated",
-        order: "asc"
+        order: "asc",
     };
     
     //search a callback (if not given -> Promises) and a config that is passed through toQueryString

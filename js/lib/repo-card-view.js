@@ -6,7 +6,7 @@ var cardView = Backbone.View.extend({
     template: _.template( cardTemplate ),
     model: null,
     tagName: 'li',
-    className: 'git-board__item',
+    className: 'git-board__card',
     render: function() {
         console.log(this.model);
         // if (this.model.get("fork")){
