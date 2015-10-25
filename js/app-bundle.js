@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	$(document).foundation();
+	// $(document).foundation();
 
 	var searchGit = __webpack_require__(1);
 
@@ -113,10 +113,7 @@
 	    var user = "noratop";
 
 	    //Setup the gitHub API instance
-	    var octo = new Octokat({
-	        username:"noratop",
-	        password:"raspig84"
-	    });
+	    var octo = new Octokat();
 	    
 	    var repos = octo.search('repositories');
 	    
@@ -24551,7 +24548,7 @@
 	    tagName: 'li',
 	    className: 'git-board__card',
 	    render: function() {
-	        console.log(this.model);
+	        // console.log(this.model);
 	        // if (this.model.get("fork")){
 	            var octo = this.model.octo;
 	            // var user = this.model.get("parent").owner.login;

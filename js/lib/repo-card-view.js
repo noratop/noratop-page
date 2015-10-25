@@ -8,7 +8,7 @@ var cardView = Backbone.View.extend({
     tagName: 'li',
     className: 'git-board__card',
     render: function() {
-        console.log(this.model);
+        // console.log(this.model);
         // if (this.model.get("fork")){
             var octo = this.model.octo;
             // var user = this.model.get("parent").owner.login;
