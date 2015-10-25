@@ -1,4 +1,4 @@
-$(document).foundation();
+// $(document).foundation();
 
 var searchGit = require("./lib/octo");
 
