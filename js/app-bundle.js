@@ -51,7 +51,6 @@
 	var ReposBoardView = __webpack_require__(57);
 
 	var git = $('#git');
-	// var nav = $("#nav");
 	var user = "noratop";
 
 
@@ -68,17 +67,22 @@
 
 	$('.keyword__item').on("click",function(){
 	    
-	    var keyword = $(this).text();
+	    var $this = $(this);
+	    var keyword = $this.text();
 	    //console.log(keyword);
-
+	    
+	    //stick the hover style on the selected keyword
+	    $this.siblings().removeClass("selected");
+	    $this.addClass("selected");
+	    
+	    //Setup the gitHub API instance
 	    var octo = new Octokat({
 	        username:"noratop",
 	        password:"raspig84"
 	    });
+	    
 	    var repos = octo.search('repositories');
 	    
-	    //octo.repos(user, "node-workshop-2").fetch().then(function(e){console.log(e)});
-
 	    //var search contains the search definition for the API request
 	    var qualifiers = keyword +" user:"+user+" fork:true";
 	    var search = {
