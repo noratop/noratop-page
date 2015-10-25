@@ -19,14 +19,14 @@
 //   "foundation/components/joyride",
 //   "foundation/components/keystrokes",
 //   "foundation/components/labels",
-@import "foundation/components/magellan";
+// @import "foundation/components/magellan";
 //   "foundation/components/orbit",
 //   "foundation/components/pagination",
 //   "foundation/components/panels",
 //   "foundation/components/pricing-tables",
 //   "foundation/components/progress-bars",
 //   "foundation/components/reveal",
-@import "foundation/components/side-nav";
+// @import "foundation/components/side-nav";
 //   "foundation/components/split-buttons",
 //   "foundation/components/sub-nav",
 //   "foundation/components/switches",
@@ -40,7 +40,13 @@
 //   "foundation/components/visibility";
 
 
-$back: repeating-linear-gradient(
+$back:  repeating-linear-gradient(45deg, 
+            transparent, 
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 30px, 
+            rgba(143, 77, 63, 0.05) 60px
+        ),
+        repeating-linear-gradient(
         -45deg, 
             transparent, 
             transparent 7px, 
@@ -49,17 +55,12 @@ $back: repeating-linear-gradient(
             transparent 7px, 
             rgba(143, 77, 63, 0.05) 30px, 
             rgba(143, 77, 63, 0.05) 40px
-        ),
-        repeating-linear-gradient(45deg, 
-            transparent, 
-            transparent 7px, 
-            rgba(143, 77, 63, 0.05) 30px, 
-            rgba(143, 77, 63, 0.05) 60px
         );
+       
 
 $myColor: tomato;
 
-
+// @import url(https://fonts.googleapis.com/css?family=Lato:400,100,400italic,700,900&subset=latin,latin-ext);
 
 
 /* apply a natural box layout model to all elements, but allowing components to change */
@@ -81,6 +82,10 @@ body {
 	position:relative;
 }
 
+h1 {
+    font-weight:100;
+}
+
 header {
     text-align: center;
     color: white;
@@ -88,7 +93,41 @@ header {
     text-shadow: 1px 1px 0.5em black;
     background-position:center;    
     background-size: cover;
-    background-image: $back,url(./../assets/img/head-backgd.png);
+    
+    background-image: -webkit-repeating-linear-gradient(45deg, 
+            transparent, 
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 30px, 
+            rgba(143, 77, 63, 0.05) 60px
+        ),
+        -webkit-repeating-linear-gradient(
+        -45deg, 
+            transparent, 
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 10px, 
+            rgba(143, 77, 63, 0.05) 20px,
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 30px, 
+            rgba(143, 77, 63, 0.05) 40px
+        ),url(./../assets/img/head-backgd.png);
+        
+    background-image: repeating-linear-gradient(45deg, 
+            transparent, 
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 30px, 
+            rgba(143, 77, 63, 0.05) 60px
+        ),
+        repeating-linear-gradient(
+        -45deg, 
+            transparent, 
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 10px, 
+            rgba(143, 77, 63, 0.05) 20px,
+            transparent 7px, 
+            rgba(143, 77, 63, 0.05) 30px, 
+            rgba(143, 77, 63, 0.05) 40px
+        ),url(./../assets/img/head-backgd.png);
+        
     font-size: 1.2em;
 
 
@@ -142,6 +181,7 @@ header {
             display: flex;
             justify-content: space-between;
         }
+        
         .title-block {
             order: -1;
             flex-basis:50vw;
@@ -151,8 +191,8 @@ header {
             h1 {
                 font-weight:100;
                 font-size: 4.2em;
-                margin: 0;
-                line-height: 150%;
+                margin: 0.5em 0;
+                line-height: 100%;
             }
             
             h2 {
@@ -178,6 +218,7 @@ header {
 }
 
 .social {
+    
     background-color: tomato ;
     overflow: hidden;
     margin:0;
@@ -213,7 +254,7 @@ header {
             
             
             &:focus {
-                outline-color:gray;
+                outline-color:lightgray;
             }
             
             &.selected {
@@ -273,16 +314,17 @@ header {
 }
 
 #git {
+    // background-color: snow;
     display : block;
-    margin:10px;
     cursor: default;
+    margin-top: 0.8em;
     
     .git-board {
+        margin:0;
         border-radius:5px;
         padding:1em 0.5em;
         display: flex;
         flex-wrap: wrap;
-        // align-items: flex-start;
         justify-content: center;
         
         &__card {
