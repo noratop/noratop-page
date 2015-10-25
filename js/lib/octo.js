@@ -19,10 +19,7 @@ function searchGit(keyword){
     var user = "noratop";
 
     //Setup the gitHub API instance
-    var octo = new Octokat({
-        username:"noratop",
-        password:"raspig84"
-    });
+    var octo = new Octokat();
     
     var repos = octo.search('repositories');
     
