@@ -236,6 +236,20 @@ header {
     color: cadetblue;
     padding:1em 0.5em;
     
+    a {
+        text-decoration:none;
+        color: salmon;
+        
+        &:hover {
+            color: red;
+        }
+        
+        &.WeatherSeq {
+            // border:1px salmon solid;
+            text-decoration: underline;
+        }
+    }
+    
     .search {
         display: flex;
         justify-content: center;
